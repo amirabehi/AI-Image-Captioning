@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Image Captioning</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🧠 AI Image Captioning</h1>
+
+    <p class="subtitle">
+        Upload an image and let AI generate a smart description.
+    </p>
+
+    <form method="POST"
+          enctype="multipart/form-data">
+
+        <input type="file"
+               name="image"
+               required>
+
+        <br><br>
+
+        <select name="language">
+
+            <option value="en">
+                English
+            </option>
+
+            <option value="fr">
+                Français
+            </option>
+
+            <option value="ar">
+                العربية
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+            Generate Caption
+        </button>
+
+    </form>
+
+    {% if image_path %}
+
+        <img src="{{ image_path }}"
+             class="preview">
+
+    {% endif %}
+
+    {% if caption %}
+
+        <div class="result">
+
+            <h2>Generated Caption</h2>
+
+            <p class="caption">
+                {{ caption }}
+            </p>
+
+            <br>
+
+            <h3>Translated Caption</h3>
+
+            <p class="caption">
+                {{ translated_caption }}
+            </p>
+
+            <br>
+
+            <audio controls>
+                <source src="{{ audio_path }}"
+                        type="audio/mpeg">
+            </audio>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
