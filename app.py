@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 import os
-
+import time
 from deep_translator import GoogleTranslator
 from gtts import gTTS
 
@@ -52,7 +52,7 @@ def index():
                 lang=language
             )
 
-            audio_file = "caption.mp3"
+            audio_file = f"caption_{int(time.time())}.mp3"
 
             audio_path = os.path.join(
                 app.config["AUDIO_FOLDER"],
